@@ -150,14 +150,14 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Awake()
         {
-            if (beams == null)
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
-            }
-            else
-            {
-                beams.SetActive(false);
-            }
+            //if (beams == null)
+            //{
+            //    Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
+            //}
+            //else
+            //{
+            //    beams.SetActive(false);
+            //}
             // #Important
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
             if (photonView.IsMine)
