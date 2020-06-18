@@ -34,7 +34,10 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                    GameObject playerInstance =  PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+
+                    playerInstance.transform.parent = GameObject.FindGameObjectWithTag("ARSessionOrigin").transform;
+                    
                 }
                 else
                 {
