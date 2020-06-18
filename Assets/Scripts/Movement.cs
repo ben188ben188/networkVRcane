@@ -2,50 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+using UnityEngine.EventSystems;
+
+using Photon.Pun;
+
+using Photon.Pun.Demo.PunBasics;
+
+namespace Com.MyCompany.MyGame
 {
-    public float moveSpeed = 10f;
-    public float rotSpeed = 50f;
-
-    void Start()
+    public class Movement : MonoBehaviourPunCallbacks, IPunObservable
     {
-        
-    }
+        public float moveSpeed = 10f;
+        public float rotSpeed = 50f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
+        void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            throw new System.NotImplementedException();
         }
-        if (Input.GetKey(KeyCode.S))
+
+        void Start()
         {
-            transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+
         }
-        if (Input.GetKey(KeyCode.Q))
+
+        // Update is called once per frame
+        void Update()
         {
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(Vector3.down, rotSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+            if (photonView.IsMine)
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    transform.Rotate(Vector3.down, rotSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+                }
+            }
         }
     }
 }

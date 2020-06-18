@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5450915501093509830}
   - component: {fileID: 5450915501093509829}
   - component: {fileID: 5450915501093509828}
-  - component: {fileID: 5450915501093509851}
   - component: {fileID: 5450915501093509850}
   - component: {fileID: 5450915501093509849}
   - component: {fileID: 5450915501093509848}
@@ -33,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5450915501093509855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0.85, z: 0.49999997}
-  m_LocalScale: {x: 0.1, y: 1.5, z: 0.1}
+  m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,20 +97,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &5450915501093509851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5450915501093509855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9342194ccf7df4e61bda50052c59c5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotSpeed: 50
 --- !u!114 &5450915501093509850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a54eeaab0a5e4e35bcec3c115de1a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  rotSpeed: 50
   PlayerUiPrefab: {fileID: 0}
   Health: 1
   beams: {fileID: 0}
