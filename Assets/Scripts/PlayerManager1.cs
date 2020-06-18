@@ -5,6 +5,9 @@ using Photon.Pun;
 
 using System.Collections;
 using Photon.Pun.Demo.PunBasics;
+using UnityEngine.XR.ARFoundation;
+
+using UnityEngine.SpatialTracking;
 
 namespace Com.MyCompany.MyGame
 {
@@ -164,6 +167,21 @@ namespace Com.MyCompany.MyGame
             {
                 PlayerManager1.LocalPlayerInstance = this.gameObject;
             }
+
+            if (!photonView.IsMine)
+            {
+                GetComponentInChildren<Camera>().enabled = false; // disable the camera of the non-owned Player;
+
+                GetComponentInChildren<AudioListener>().enabled = false; // Disables AudioListener of non-owned Player - prevents multiple AudioListeners from being present in scene.
+
+                GetComponentInChildren<ARCameraManager>().enabled = false;
+
+                GetComponentInChildren<TrackedPoseDriver>().enabled = false;
+
+                GetComponentInChildren<ARCameraBackground>().enabled = false;
+
+            }
+
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
             DontDestroyOnLoad(this.gameObject);

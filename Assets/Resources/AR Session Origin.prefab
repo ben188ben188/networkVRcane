@@ -286,6 +286,8 @@ GameObject:
   - component: {fileID: 7815454672898339687}
   - component: {fileID: 38263674909590423}
   - component: {fileID: 7269448409183946794}
+  - component: {fileID: 1115079018897262179}
+  - component: {fileID: 8639666188530333357}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: ARSessionOrigin
@@ -336,10 +338,11 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1115079018897262179}
+  - {fileID: 7269448409183946794}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -358,3 +361,35 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &1115079018897262179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815454672898339686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a54eeaab0a5e4e35bcec3c115de1a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerUiPrefab: {fileID: 0}
+  Health: 1
+  beams: {fileID: 0}
+--- !u!114 &8639666188530333357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815454672898339686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4a44866b03645379c408ffdd4dcce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 7
+  height: 3
+  centerOffset: {x: 0, y: 0, z: 0}
+  followOnStart: 0
+  smoothSpeed: 2
