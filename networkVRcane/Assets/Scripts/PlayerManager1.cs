@@ -67,6 +67,7 @@ namespace Com.MyCompany.MyGame
         private GameObject beams;
         //True, when the user is firing
         bool IsFiring;
+
 #if UNITY_5_4_OR_NEWER
         void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
         {
@@ -101,8 +102,8 @@ namespace Com.MyCompany.MyGame
                 transform.position = new Vector3(0f, 5f, 0f);
             }
 
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            /*GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);*/
 
         }
 
@@ -118,13 +119,7 @@ namespace Com.MyCompany.MyGame
             {
                 return;
             }
-            // We are only interested in Beamers
-            // we should be using tags but for the sake of distribution, let's simply check by name.
-            if (!other.name.Contains("Beam"))
-            {
-                return;
-            }
-            Health -= 0.1f;
+
         }
         /// <summary>
         /// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger.
@@ -138,14 +133,7 @@ namespace Com.MyCompany.MyGame
             {
                 return;
             }
-            // We are only interested in Beamers
-            // we should be using tags but for the sake of distribution, let's simply check by name.
-            if (!other.name.Contains("Beam"))
-            {
-                return;
-            }
-            // we slowly affect health when beam is constantly hitting us, so player has to move to prevent death.
-            Health -= 0.1f * Time.deltaTime;
+
         }
 
         /// <summary>
@@ -180,6 +168,8 @@ namespace Com.MyCompany.MyGame
 
                 GetComponentInChildren<ARCameraBackground>().enabled = false;
 
+                GetComponent<ARSessionOrigin>().enabled = false;
+
             }
 
             // #Critical
@@ -192,82 +182,13 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Start()
         {
-            if (PlayerUiPrefab != null)
-            {
-                GameObject _uiGo = Instantiate(PlayerUiPrefab);
-                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-            }
-            else
-            {
-                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
-            }
-
-            CameraWork1 _cameraWork = this.gameObject.GetComponent<CameraWork1>();
 
 
-            if (_cameraWork != null)
-            {
-                if (photonView.IsMine)
-                {
-                    _cameraWork.OnStartFollowing();
-                }
-            }
-            else
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork1 Component on playerPrefab.", this);
-            }
 #if UNITY_5_4_OR_NEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
 #endif
 
-        }
-
-        /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity on every frame.
-        /// </summary>
-        void Update()
-        {
-            if (photonView.IsMine)
-            {
-                ProcessInputs();
-            }
-            
-
-            // trigger Beams active state
-            if (beams != null && IsFiring != beams.activeInHierarchy)
-            {
-                beams.SetActive(IsFiring);
-            }
-            if (Health <= 0f)
-            {
-                GameManager.Instance.LeaveRoom();
-            }
-        }
-
-        #endregion
-
-        #region Custom
-
-        /// <summary>
-        /// Processes the inputs. Maintain a flag representing when the user is pressing Fire.
-        /// </summary>
-        void ProcessInputs()
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (!IsFiring)
-                {
-                    IsFiring = true;
-                }
-            }
-            if (Input.GetButtonUp("Fire1"))
-            {
-                if (IsFiring)
-                {
-                    IsFiring = false;
-                }
-            }
         }
 
         #endregion
