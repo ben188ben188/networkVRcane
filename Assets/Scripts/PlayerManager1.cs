@@ -5,8 +5,11 @@ using Photon.Pun;
 
 using System.Collections;
 using Photon.Pun.Demo.PunBasics;
+using UnityEngine.XR;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.SpatialTracking;
 
-namespace Com.MyCompany.MyGame
+   namespace Com.MyCompany.MyGame
 {
     /// <summary>
     /// Player manager.
@@ -152,6 +155,15 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Awake()
         {
+            if (!photonView.IsMine)
+            {
+                gameObject.GetComponent<ARSessionOrigin>().enabled=false;
+                gameObject.GetComponentInChildren<TrackedPoseDriver>().enabled = false;
+                gameObject.GetComponentInChildren<ARCameraManager>().enabled = false;
+                gameObject.GetComponentInChildren<ARCameraBackground>().enabled = false;
+                gameObject.GetComponentInChildren<Camera>().enabled = false;
+
+            }
             //if (beams == null)
             //{
             //    Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
@@ -176,6 +188,7 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Start()
         {
+            
             if (PlayerUiPrefab != null)
             {
                 GameObject _uiGo = Instantiate(PlayerUiPrefab);
