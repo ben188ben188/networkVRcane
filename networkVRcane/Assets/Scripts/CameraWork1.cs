@@ -11,7 +11,6 @@
 
 using UnityEngine;
 
-
 namespace Photon.Pun.Demo.PunBasics
 {
     /// <summary>
@@ -24,12 +23,12 @@ namespace Photon.Pun.Demo.PunBasics
 
         [Tooltip("The distance in the local x-z plane to the target")]
         [SerializeField]
-        private float distance = 7.0f;
+        private float distance = 0.5f;
 
 
         [Tooltip("The height we want the camera to be above the target")]
         [SerializeField]
-        private float height = 3.0f;
+        private float height = 0.5f;
 
 
         [Tooltip("Allow the camera to be offseted vertically from the target, for example giving more view of the sceneray and less ground.")]
@@ -44,11 +43,11 @@ namespace Photon.Pun.Demo.PunBasics
 
         [Tooltip("The Smoothing for the camera to follow the target")]
         [SerializeField]
-        private float smoothSpeed = 0.125f;
+        private float smoothSpeed = 2f;
 
 
         // cached transform of the target
-        Transform cameraTransform;
+        public Transform cameraTransform;
 
 
         // maintain a flag internally to reconnect if target is lost or camera is switched
@@ -108,7 +107,7 @@ namespace Photon.Pun.Demo.PunBasics
         /// </summary>
         public void OnStartFollowing()
         {
-            cameraTransform = Camera.main.transform;
+            cameraTransform = GameObject.FindGameObjectWithTag("PlayerCam").transform;
             isFollowing = true;
             // we don't smooth anything, we go straight to the right camera shot
             Cut();
@@ -130,10 +129,10 @@ namespace Photon.Pun.Demo.PunBasics
             cameraOffset.y = height;
 
 
-            cameraTransform.position = Vector3.Lerp(cameraTransform.position, this.transform.position + this.transform.TransformVector(cameraOffset), smoothSpeed * Time.deltaTime);
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, cameraTransform.position + cameraTransform.TransformVector(cameraOffset), smoothSpeed * Time.deltaTime);
 
 
-            cameraTransform.LookAt(this.transform.position + centerOffset);
+            gameObject.transform.LookAt(cameraTransform.position + centerOffset);
         }
 
 
@@ -143,10 +142,10 @@ namespace Photon.Pun.Demo.PunBasics
             cameraOffset.y = height;
 
 
-            cameraTransform.position = this.transform.position + this.transform.TransformVector(cameraOffset);
+            gameObject.transform.position = cameraTransform.position + cameraTransform.TransformVector(cameraOffset);
 
 
-            cameraTransform.LookAt(this.transform.position + centerOffset);
+            gameObject.transform.LookAt(cameraTransform.position + centerOffset);
         }
         #endregion
     }

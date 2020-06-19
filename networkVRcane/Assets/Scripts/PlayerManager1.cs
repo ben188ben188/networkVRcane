@@ -96,45 +96,10 @@ namespace Com.MyCompany.MyGame
 
         void CalledOnLevelWasLoaded(int level)
         {
-            // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
-            {
-                transform.position = new Vector3(0f, 5f, 0f);
-            }
 
-            /*GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);*/
 
         }
 
-        /// <summary>
-        /// MonoBehaviour method called when the Collider 'other' enters the trigger.
-        /// Affect Health of the Player if the collider is a beam
-        /// Note: when jumping and firing at the same, you'll find that the player's own beam intersects with itself
-        /// One could move the collider further away to prevent this or check if the beam belongs to the player.
-        /// </summary>
-        void OnTriggerEnter(Collider other)
-        {
-            if (!photonView.IsMine)
-            {
-                return;
-            }
-
-        }
-        /// <summary>
-        /// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger.
-        /// We're going to affect health while the beams are touching the player
-        /// </summary>
-        /// <param name="other">Other.</param>
-        void OnTriggerStay(Collider other)
-        {
-            // we dont' do anything if we are not the local player.
-            if (!photonView.IsMine)
-            {
-                return;
-            }
-
-        }
 
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.

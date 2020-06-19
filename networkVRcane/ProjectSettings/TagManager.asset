@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - ashcan
   - ARSessionOrigin
+  - Spectator
+  - PlayerCam
   layers:
   - Default
   - TransparentFX
