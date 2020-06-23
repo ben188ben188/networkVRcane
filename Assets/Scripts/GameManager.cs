@@ -35,6 +35,7 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+<<<<<<< HEAD
                     
                     if (Launcher1.gamePlayerNumber == 0)
                     {
@@ -46,6 +47,9 @@ namespace Com.MyCompany.MyGame
                         Debug.Log("game player number is 2");
                         PhotonNetwork.Instantiate(this.playerPrefab2.name, new Vector3(0f, 3f, 0f), Quaternion.identity, 0);
                     }
+=======
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 3f, 0f), Quaternion.identity, 0);
+>>>>>>> 30406184e43996b6a9d2d2af845d8b466b9fe1e3
                 }
                 else
                 {

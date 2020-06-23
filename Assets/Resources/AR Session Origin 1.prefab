@@ -134,6 +134,11 @@ GameObject:
   - component: {fileID: 1526309306207254586}
   - component: {fileID: 7764047249879940601}
   - component: {fileID: 7885531467365869160}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 4292010103960806597}
+  - component: {fileID: 9042140169386143560}
+>>>>>>> 30406184e43996b6a9d2d2af845d8b466b9fe1e3
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: Untagged
@@ -247,6 +252,46 @@ MonoBehaviour:
   m_CustomMaterial: {fileID: 0}
   m_UseCustomRendererAsset: 0
   m_CustomRendererAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!114 &4292010103960806597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422381649763386816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 9042140169386143560}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &9042140169386143560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422381649763386816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+>>>>>>> 30406184e43996b6a9d2d2af845d8b466b9fe1e3
 --- !u!1 &4781249971842146427
 GameObject:
   m_ObjectHideFlags: 0

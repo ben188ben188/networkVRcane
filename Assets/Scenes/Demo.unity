@@ -1932,8 +1932,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 154179991817200008, guid: 7e3ae00e064c04c7697bc918f193fa12,
+<<<<<<< HEAD
     type: 3}
   playerPrefab2: {fileID: 6053961782054278256, guid: 43926e8af484a4d929bfec5b139109fd,
+=======
+>>>>>>> 30406184e43996b6a9d2d2af845d8b466b9fe1e3
     type: 3}
 --- !u!4 &852335407
 Transform:
