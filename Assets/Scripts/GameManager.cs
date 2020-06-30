@@ -20,6 +20,7 @@ namespace Com.MyCompany.MyGame
 
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
+        public GameObject playerPrefab2;
 
         void Start()
         {
@@ -34,7 +35,15 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                    if (Launcher1.playerType == 0)
+                    {
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 3f, 0f), Quaternion.identity, 0);
+                    }
+                    else
+                    {
+                        PhotonNetwork.Instantiate(this.playerPrefab2.name, new Vector3(0f, 3f, 0f), Quaternion.identity, 0);
+                    }
+                    
                 }
                 else
                 {
@@ -77,7 +86,7 @@ namespace Com.MyCompany.MyGame
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
             Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
+            PhotonNetwork.LoadLevel("demo");
         }
 
 

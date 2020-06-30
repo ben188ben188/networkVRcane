@@ -5,8 +5,11 @@ using Photon.Pun;
 
 using System.Collections;
 using Photon.Pun.Demo.PunBasics;
+using UnityEngine.XR;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.SpatialTracking;
 
-namespace Com.MyCompany.MyGame
+   namespace Com.MyCompany.MyGame
 {
     /// <summary>
     /// Player manager.
@@ -14,6 +17,8 @@ namespace Com.MyCompany.MyGame
     /// </summary>
     public class PlayerManager1 : MonoBehaviourPunCallbacks, IPunObservable
     {
+        public float moveSpeed = 10f;
+        public float rotSpeed = 50f;
 
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
@@ -98,8 +103,8 @@ namespace Com.MyCompany.MyGame
                 transform.position = new Vector3(0f, 5f, 0f);
             }
 
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            //GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+            //_uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
 
         }
 
@@ -150,14 +155,23 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Awake()
         {
-            if (beams == null)
+            if (!photonView.IsMine)
             {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
+                gameObject.GetComponent<ARSessionOrigin>().enabled=false;
+                gameObject.GetComponentInChildren<TrackedPoseDriver>().enabled = false;
+                gameObject.GetComponentInChildren<ARCameraManager>().enabled = false;
+                gameObject.GetComponentInChildren<ARCameraBackground>().enabled = false;
+                gameObject.GetComponentInChildren<Camera>().enabled = false;
+
             }
-            else
-            {
-                beams.SetActive(false);
-            }
+            //if (beams == null)
+            //{
+            //    Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
+            //}
+            //else
+            //{
+            //    beams.SetActive(false);
+            //}
             // #Important
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
             if (photonView.IsMine)
@@ -174,6 +188,7 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Start()
         {
+            
             if (PlayerUiPrefab != null)
             {
                 GameObject _uiGo = Instantiate(PlayerUiPrefab);
@@ -225,6 +240,42 @@ namespace Com.MyCompany.MyGame
             {
                 GameManager.Instance.LeaveRoom();
             }
+            if (photonView.IsMine)
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    transform.Rotate(Vector3.down, rotSpeed * Time.deltaTime);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+                }
+            }
+
         }
 
         #endregion
